@@ -59,7 +59,7 @@ def calculate_warp_matrix(img1, img2, img_id):
 
     print("Align two rasters for {}: cc:{}".format(img_id, cc))
     print("warp matrix: ")
-    print warp_mat
+    print(warp_mat)
 
     return warp_mat
 
@@ -106,9 +106,8 @@ if __name__ == '__main__':
 
             warp_matrix_m = calculate_warp_matrix(img_3, img_m_orig, img_id + '_M')
             warp_matrix_a = calculate_warp_matrix(img_3, img_a_orig, img_id + '_A')
-
-            np.save(open('image_alignment/{}_warp_matrix_m.npz'.format(img.image_id), 'w'), warp_matrix_m)
-            np.save(open('image_alignment/{}_warp_matrix_a.npz'.format(img.image_id), 'w'), warp_matrix_a)
+            np.save(open('/home/jupyter/dstl_unet/utils/image_alignment/{}_warp_matrix_m.npz'.format(img.image_id), 'wb'), warp_matrix_m)
+            np.save(open('/home/jupyter/dstl_unet/utils/image_alignment/{}_warp_matrix_a.npz'.format(img.image_id), 'wb'), warp_matrix_a)
 
             # img.load_image()
 
@@ -130,19 +129,19 @@ if __name__ == '__main__':
             compare_a_register = np.stack([img_a_register_rescale, empty_channel, img_3_rescale], axis=-1).astype(np.uint8)
 
             filenames = [
-                './image_alignment/comparison/{}/3_rescale.png'.format(img.image_id),
-                './image_alignment/comparison/{}/m_orig.png'.format(img.image_id),
-                './image_alignment/comparison/{}/m_register.png'.format(img.image_id),
-                './image_alignment/comparison/{}/a_orig.png'.format(img.image_id),
-                './image_alignment/comparison/{}/a_register.png'.format(img.image_id),
+                '/home/jupyter/dstl_unet/utils/image_alignment/comparison/{}/3_rescale.png'.format(img.image_id),
+                '/home/jupyter/dstl_unet/utils/image_alignment/comparison/{}/m_orig.png'.format(img.image_id),
+                '/home/jupyter/dstl_unet/utils/image_alignment/comparison/{}/m_register.png'.format(img.image_id),
+                '/home/jupyter/dstl_unet/utils/image_alignment/comparison/{}/a_orig.png'.format(img.image_id),
+                '/home/jupyter/dstl_unet/utils/image_alignment/comparison/{}/a_register.png'.format(img.image_id),
             ]
 
             for fn in filenames:
                 if not os.path.exists(os.path.dirname(fn)):
                     os.mkdir(os.path.dirname(fn))
 
-            cv2.imwrite('./image_alignment/comparison/{}/3_rescale.png'.format(img.image_id),img_3_rescale[200:900,300:1200])
-            cv2.imwrite('./image_alignment/comparison/{}/m_orig.png'.format(img.image_id), compare_m_orig[200:900,300:1200,:])
-            cv2.imwrite('./image_alignment/comparison/{}/m_register.png'.format(img.image_id), compare_m_register[200:900,300:1200,:])
-            cv2.imwrite('./image_alignment/comparison/{}/a_orig.png'.format(img.image_id), compare_a_orig[200:900,300:1200,:])
-            cv2.imwrite('./image_alignment/comparison/{}/a_register.png'.format(img.image_id), compare_a_register[200:900,300:1200,:])
+            cv2.imwrite('/home/jupyter/dstl_unet/utils/image_alignment/comparison/{}/3_rescale.png'.format(img.image_id),img_3_rescale[200:900,300:1200])
+            cv2.imwrite('/home/jupyter/dstl_unet/utils/image_alignment/comparison/{}/m_orig.png'.format(img.image_id), compare_m_orig[200:900,300:1200,:])
+            cv2.imwrite('/home/jupyter/dstl_unet/utils/image_alignment/comparison/{}/m_register.png'.format(img.image_id), compare_m_register[200:900,300:1200,:])
+            cv2.imwrite('/home/jupyter/dstl_unet/utils/image_alignment/comparison/{}/a_orig.png'.format(img.image_id), compare_a_orig[200:900,300:1200,:])
+            cv2.imwrite('/home/jupyter/dstl_unet/utils/image_alignment/comparison/{}/a_register.png'.format(img.image_id), compare_a_register[200:900,300:1200,:])
