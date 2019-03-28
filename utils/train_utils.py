@@ -35,7 +35,7 @@ Special treatment:
 
 import pandas as pd
 import os
-import data_utils
+from utils import data_utils
 import numpy as np
 import cv2
 import sys
