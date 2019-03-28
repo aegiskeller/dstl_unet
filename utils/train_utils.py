@@ -168,8 +168,8 @@ def input_data(crop_size, class_id = 0, crop_per_img = 1,
             angle = 360. * np.random.randint(0, rotation) / rotation
             radian = 2. * np.pi * angle / 360.
             if verbose:
-                print 'Rotation angle : {0}(degree), {1: 0.2f}(radian)'.\
-                    format(int(angle), radian)
+                print('Rotation angle : {0}(degree), {1: 0.2f}(radian)'.\
+                    format(int(angle), radian))
 
             crop_size_new = int(
                 np.ceil(float(crop_size) * (abs(np.sin(radian)) +
@@ -188,8 +188,8 @@ def input_data(crop_size, class_id = 0, crop_per_img = 1,
                 x_base = np.random.randint(0, x_crop - crop_size_new)
                 y_base = np.random.randint(0, y_crop - crop_size_new)
                 if verbose:
-                    print 'x_base {} for No. {} image'.format(x_base, id)
-                    print 'y_base {} for No. {} image'.format(y_base, id)
+                    print('x_base {} for No. {} image'.format(x_base, id))
+                    print('y_base {} for No. {} image'.format(y_base, id))
 
                 img_crop = np.squeeze(image_feature[i, x_base: x_base + crop_size_new,
                            y_base: y_base + crop_size_new, :])
