@@ -218,7 +218,7 @@ if __name__ == '__main__':
                     index=False)
 
     sys.stdout.write('\n')
-    print df.head()
+    print(df.head())
 
     df.to_csv(
         os.path.join('.', 'submission/class_{}.csv'.format(class_type)),
